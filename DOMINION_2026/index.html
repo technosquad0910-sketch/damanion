@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d16">
+  <meta name="description" content="DOMINION 2026 — футуристическая стратегия в реальном времени.">
+  <title>DOMINION 2026 — стратегия будущего</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">D</span><div><strong>DOMINION <em>2026</em></strong><small>FRONTIER COMMAND</small></div></div>
+      <div class="top-stats">
+        <div class="resource"><span class="resource-icon credits">₡</span><div><small>КРЕДИТЫ</small><strong id="credits">650</strong><i id="creditsRate">+12/мин</i></div></div>
+        <div class="resource"><span class="resource-icon energy">ϟ</span><div><small>ЭНЕРГИЯ</small><strong id="energy">180</strong><i id="energyRate">+8/мин</i></div></div>
+        <div class="resource"><span class="resource-icon alloy">⬡</span><div><small>СПЛАВ</small><strong id="alloy">120</strong><i id="alloyRate">+4/мин</i></div></div>
+      </div>
+      <div class="top-actions"><span class="status-dot"></span><span class="live-label">СИСТЕМА АКТИВНА</span><button class="icon-btn" id="saveBtn" title="Сохранить">▣</button><button class="icon-btn" id="settingsBtn" title="Настройки">⚙</button></div>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <div class="profile"><div class="avatar">⟁</div><div><strong>КОМАНДОВАНИЕ</strong><small id="commanderName">Командир • Уровень 1</small></div></div>
+        <div class="nav-label">ОПЕРАЦИИ</div>
+        <button class="nav-item active" data-tab="overview"><span>◈</span> Обзор базы <kbd>1</kbd></button>
+        <button class="nav-item" data-tab="build"><span>▦</span> Строительство <kbd>2</kbd></button>
+        <button class="nav-item" data-tab="army"><span>✣</span> Армия <kbd>3</kbd></button>
+        <button class="nav-item" data-tab="research"><span>⌬</span> Исследования <kbd>4</kbd></button>
+        <button class="nav-item" data-tab="campaign"><span>◎</span> Кампания <kbd>5</kbd></button>
+        <div class="sidebar-bottom">
+          <div class="sector-card"><div class="sector-top"><span>СЕКТОР 07-A</span><span class="live-dot"></span></div><strong>АРКАДИЯ</strong><small>Пограничная колония</small><div class="sector-progress"><span></span></div><div class="sector-foot"><span>Контроль территории</span><b id="controlPct">42%</b></div></div>
+          <button class="nav-item" id="newGameBtn"><span>↻</span> Новая игра</button>
+          <button class="nav-item" id="exportBtn"><span>⇩</span> Экспорт сохранения</button>
+        </div>
+      </aside>
+
+      <section class="main-content">
+        <div class="welcome-row"><div><div class="eyebrow"><span class="tiny-square"></span> ЦЕНТР УПРАВЛЕНИЯ / АРКАДИЯ</div><h1 id="pageTitle">Развитие колонии</h1><p id="pageSubtitle">Расширяйте производство. Исследуйте технологии. Подготовьтесь к угрозе.</p></div><div class="day-card"><small>ЦИКЛ КОЛОНИИ</small><strong id="dayCount">01</strong><span id="clockLabel">00:00:00</span></div></div>
+
+        <div class="campaign-banner" id="missionBanner">
+          <div class="mission-art"><div class="planet"></div><div class="orbital"></div><div class="banner-grid"></div><div class="banner-label">OPERATION<br><b>FIRST LIGHT</b></div></div>
+          <div class="mission-copy"><div class="mission-tag"><span>●</span> АКТИВНАЯ ДИРЕКТИВА</div><h2 id="missionTitle">Укрепить плацдарм</h2><p id="missionDesc">Постройте генератор энергии и казарму, затем подготовьте отряд разведчиков.</p><div class="mission-progress"><span id="missionProgress"></span></div><small id="missionProgressText">Прогресс директивы: 0 / 3</small></div>
+          <button class="primary-btn" id="missionBtn">К директиве <span>↗</span></button>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="panel map-panel">
+            <div class="panel-head"><div><span class="panel-kicker">ТАКТИЧЕСКАЯ СЕТКА</span><h3>Зона операций</h3></div><div class="map-legend"><span><i class="legend-friendly"></i> Союзники</span><span><i class="legend-enemy"></i> Неизвестные</span></div></div>
+            <div class="map-toolbar"><span><i class="live-dot"></i> ARCADIA / SURFACE SCAN</span><div><button id="zoomOut">−</button><button id="zoomIn">+</button><button id="centerMap">⌖</button></div></div>
+            <div class="map-wrap"><canvas id="battleMap" aria-label="Интерактивная тактическая карта"></canvas><div class="map-hint" id="mapHint">ЛКМ — выбрать юнит или здание · ПКМ — переместить выбранных юнитов</div><div class="map-toast" id="mapToast"></div></div>
+            <div class="map-footer"><span><i class="legend-friendly"></i> <b id="unitCount">3</b> юнита</span><span><i class="legend-building"></i> <b id="buildingCount">2</b> объекта</span><span><i class="legend-enemy"></i> <b id="enemyCount">3</b> сигнала врага</span><span class="map-coords" id="coords">X: 00.0 / Y: 00.0</span></div>
+          </div>
+          <div class="right-stack">
+            <div class="panel status-panel"><div class="panel-head"><div><span class="panel-kicker">СОСТОЯНИЕ</span><h3>Империя</h3></div><span class="mini-icon">◈</span></div><div class="empire-stat"><div class="stat-icon cyan">⌂</div><div><small>Население</small><strong id="population">120 <small>/ 180</small></strong></div><div class="stat-change">+4%</div></div><div class="empire-stat"><div class="stat-icon violet">⌬</div><div><small>Технологии</small><strong id="techLevel">Уровень 1</strong></div><div class="stat-change">+1</div></div><div class="empire-stat"><div class="stat-icon orange">⛨</div><div><small>Оборона</small><strong id="defense">Низкая</strong></div><div class="stat-change warning">!</div></div><div class="empire-stat"><div class="stat-icon green">⌁</div><div><small>Стабильность</small><strong id="stability">86%</strong></div><div class="stat-change">+2%</div></div></div>
+            <div class="panel selected-panel"><div class="panel-head"><div><span class="panel-kicker">ТАКТИЧЕСКИЙ КОНТРОЛЬ</span><h3>Выбранный объект</h3></div><span class="selection-tag" id="selectionTag">UNIT</span></div><div id="selectionContent" class="selection-content"><div class="empty-selection"><span>⌖</span><strong>Объект не выбран</strong><small>Выберите юнит или постройку на карте</small></div></div></div>
+          </div>
+        </div>
+
+        <div class="bottom-grid">
+          <div class="panel activity-panel"><div class="panel-head"><div><span class="panel-kicker">СВОДКА СИСТЕМЫ</span><h3>Журнал событий</h3></div><button class="text-btn" id="clearLog">Очистить</button></div><div id="eventLog" class="event-log"></div></div>
+          <div class="panel quick-panel"><div class="panel-head"><div><span class="panel-kicker">БЫСТРЫЕ ДЕЙСТВИЯ</span><h3>Командный центр</h3></div></div><div class="quick-actions"><button class="quick-action" data-quick="build"><span class="quick-icon cyan">▦</span><span><b>Построить объект</b><small>Расширить инфраструктуру</small></span><span class="arrow">↗</span></button><button class="quick-action" data-quick="army"><span class="quick-icon orange">✣</span><span><b>Обучить войска</b><small>Увеличить боевой потенциал</small></span><span class="arrow">↗</span></button><button class="quick-action" data-quick="research"><span class="quick-icon violet">⌬</span><span><b>Открыть исследования</b><small>Улучшить технологии</small></span><span class="arrow">↗</span></button></div></div>
+        </div>
+        <footer class="footer"><span>DOMINION SYSTEMS <b>© 2026</b></span><span>LOCAL BUILD <i></i> SAVE READY</span><span>ENGINE 0.1.0 / ARCADIA</span></footer>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="modalBackdrop"><div class="modal" role="dialog" aria-modal="true"><div class="modal-head"><div><span class="panel-kicker" id="modalKicker">COMMAND INTERFACE</span><h2 id="modalTitle">Строительство</h2></div><button class="icon-btn" id="modalClose">✕</button></div><div id="modalBody" class="modal-body"></div></div></div>
+  <div class="toast-stack" id="toastStack"></div>
+  <script src="game.js"></script>
+</body>
+</html>
